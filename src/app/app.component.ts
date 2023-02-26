@@ -8,21 +8,26 @@ import { ApiService } from './service/api.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
-
   constructor(private apiservice: ApiService) {}
 
-weatherData? : Root;
+
+  cityName : string = "Wellington";
+  weatherData?: Root;
 
   ngOnInit(): void {
-    this.apiservice.getweatherdata('Wellington').subscribe({
+    this.getWeatherData(this.cityName);
+  }
+
+  onSubmit(){
+    this.getWeatherData(this.cityName);
+    this.cityName = '';
+  }
+
+  private getWeatherData(cityName : string){
+   return this.apiservice.getweatherdata(cityName).subscribe({
       next: (respones) => {
         this.weatherData = respones;
       },
     });
   }
-
-  
-
-
 }
