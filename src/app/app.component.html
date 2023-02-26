@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container" *ngIf="weatherData">
   <div class="upper-data">
-    <img src="../assets/hot.jfif" *ngIf="14 > 15">
-    <img src="../assets/Cold.jfif" *ngIf="14 < 15">
+    <img src="../assets/hot.jfif" *ngIf="weatherData.current.temp_c > 15">
+    <img src="../assets/Cold.jfif" *ngIf="weatherData.current.temp_c < 15">
 
     <div class="weather-data">
-      <div class="location">Mumbai</div>
-      <div class="temperature">{{13.0089277 | number : '1.0-0'}}°C</div>
+      <div class="location">{{weatherData.location.name}}</div>
+      <div class="temperature">{{weatherData.current.temp_c | number : '1.0-0'}}°C</div>
     </div>
 
 
@@ -20,11 +20,11 @@
       <div class="info-block">
         <div class="info-block-label">
           <img src="../assets/low-temperature-icon.svg" alt="">
-          <span>min</span>
+          <span>Celcius</span>
         </div>
 
         <div class="info-block-value">
-          10°C
+          {{weatherData.current.temp_c}}°C
         </div>
 
       </div>
@@ -32,11 +32,11 @@
       <div class="info-block">
         <div class="info-block-label">
           <img src="../assets/hot.jfif" alt="">
-          <span>max</span>
+          <span>Fahrenheit</span>
         </div>
 
         <div class="info-block-value">
-          10°C
+          {{weatherData.current.temp_f}}°f
         </div>
 
       </div>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="info-block-value">
-          10°C
+          {{weatherData.current.humidity}}%
         </div>
 
       </div>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="info-block-value">
-          10°C
+          {{weatherData.current.wind_kph}}kph
         </div>
 
       </div>
